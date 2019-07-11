@@ -121,7 +121,7 @@ namespace yask {
 #ifndef USE_MPI
 
         // Simple settings.
-        opts->_num_ranks.setValsSame(0);
+        opts->_num_ranks.setValsSame(1);
         opts->_rank_indices.setValsSame(0);
         rank_domain_offsets.setValsSame(0);
         
