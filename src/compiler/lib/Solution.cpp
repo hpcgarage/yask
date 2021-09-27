@@ -233,6 +233,8 @@ namespace yask {
         // Data itself will be created in analyze_solution().
         if (target == "intel64")
             _printer = new YASKCppPrinter(*this, *_eq_bundles, *_eq_stages, *_cluster_eq_bundles);
+	else if (target == "aarch64")
+            _printer = new YASKCppPrinter(*this, *_eq_bundles, *_eq_stages, *_cluster_eq_bundles);
         else if (target == "knc")
             _printer = new YASKKncPrinter(*this, *_eq_bundles, *_eq_stages, *_cluster_eq_bundles);
         else if (target == "avx" || target == "avx2")

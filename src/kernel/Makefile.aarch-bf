@@ -74,8 +74,10 @@ else ifneq ($(filter $(arch),knc),)
   TARGET		:=	knc
 else ifneq ($(filter $(arch),intel64 cpp),)
   TARGET		:=	intel64
+else ifneq ($(filter $(arch),aarch64 cpp),)
+  TARGET		:=	aarch64
 else
-  $(error Target not recognized; use arch=avx512, avx512lo, avx2, avx, knl, knc, or intel64)
+  $(error Target not recognized; use arch=avx512, avx512lo, avx2, avx, knl, knc, intel64, or aarch64)
 endif
 
 # Specify YK_STENCIL and/or YK_ARCH on 'make' cmd-line to name binaries differently.
@@ -133,6 +135,11 @@ else ifeq ($(TARGET),intel64)
  ICC_ISA	?=	-xHOST
  CXX_ISA	?=	-march=native
 
+else ifeq ($(TARGET),aarch64)
+
+ CXX_ISA	?=	-mcpu=cortex-a72 -mtune=cortex-a72
+ #CXX_ISA	?=	-march=native
+ #CXX_ISA	?=	-mcpu=cortex-a72 -mfpu=neon-fp-armv8 -mtune=cortex-a72
 else
 
 $(error Internal error: arch lists are not consistent)

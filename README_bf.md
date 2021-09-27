@@ -6,18 +6,27 @@ Compilers used: HPC-X 2.9.0 - supports gcc 8.4.1 and OpenMPI 4.1
 
 ## Compilation Instructions (tested on HPC Advisory Council Thor cluster)
 
-
+### For Bluefield2
 
 ```
+#Note that this points to a symlinked HPC-X installation for BF2/aarch64
 $ module use hpcx-bf2/modulefiles/
 $ module load hpcx-mt-ompi
 $ which mpicc
 ~/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-ubuntu20.04-aarch64/ompi/bin/mpicc 
+#Build standard stencil compiler app - defaults to using OpenMP with cortex A72 flags
+make arch=aarch64 stencil=iso3dfd -j
+# Specify MPI compilation with 8 ranks for the 8 cores on the BF2
+make arch=aarch64 ranks=8 stencil=iso3dfd -j
 ```
-For Intel Host
+### For Intel Host
 
 ```
-make arch=intel64 stencil=iso3dfd -j
+$ module use hpcx-rhel8/modulefiles/
+$ module load hpcx-mt-ompi
+$ make arch=intel64 stencil=iso3dfd -j
+#Run the application
+$ bin/yask.sh -arch intel64 -stencil iso3dfd -g 64
 ```
 
 ## Changes to source code to support aarch64
@@ -61,4 +70,21 @@ compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-ubuntu20.04-aarch64/ompi/l
 We worked around this by pulling the Redhat 8.4 version of HPC-X and symlinking to its ompi lib folder:
 ```
 compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-ubuntu20.04-aarch64/ompi/$ ln -s ~/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-redhat8.4-aarch64/ompi/lib/ lib
+```
+
+### Runtime errors
+
+#### YASK x86 SHM error
+
+On a Broadwell x86 system compiled for generic intel64 arch (no implicit AVX support), we see the following error:
+```
+bin/yask.sh -arch intel64 -stencil iso3dfd -g 64
+...
+YASK Kernel: YASK exceptionError: MPI shm-allocated 0x14e3a8444108 is not 64-byte aligned.
+YASK Kernel: YASK exceptionError: MPI shm-allocated 0x14d256db5108 is not 64-byte aligned.
+```
+
+As a temporary fix, we can disable the use of shared memory for communication between MPI ranks, especially if MPI is not used. This may decrease performance for MPI tests.
+```
+bin/yask.sh -arch intel64 -no-use_shm -stencil iso3dfd -g 64
 ```
