@@ -16,8 +16,14 @@ $ which mpicc
 ~/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-ubuntu20.04-aarch64/ompi/bin/mpicc 
 #Build standard stencil compiler app - defaults to using OpenMP with cortex A72 flags
 make arch=aarch64 stencil=iso3dfd -j
+```
+
+MPI compilation and execution
+```
 # Specify MPI compilation with 8 ranks for the 8 cores on the BF2
 make arch=aarch64 ranks=8 stencil=iso3dfd -j
+#Run using a hostfile with the local BF2 card (or other hosts) and 8 ranks
+./bin/yask.sh -mpi_cmd 'mpirun -np 8 --hostfile bf2hosts -mca btl self,tcp' -l 8 -no-use_shm -stencil iso3dfd -arch aarch64
 ```
 ### For Intel Host
 

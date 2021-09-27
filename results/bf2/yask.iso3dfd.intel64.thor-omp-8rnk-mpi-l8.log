@@ -1,0 +1,827 @@
+Invocation: ./bin/yask.sh -mpi_cmd 'mpirun -np 8 --hostfile bf2hosts -mca btl self,tcp' -l 8 -no-use_shm -stencil iso3dfd -arch aarch64
+==> ./bin/../build/yask_kernel.iso3dfd.aarch64.make-report.txt <==
+MAKEFLAGS="w -j -- YASK_OUTPUT_DIR=/global/home/users/jyoung/git_repos/yask_bf/yask arch=aarch64 stencil=iso3dfd"
+make[2]: Entering directory '/global/home/users/jyoung/git_repos/yask_bf/yask/src/kernel'
+Build environment for /global/home/users/jyoung/git_repos/yask_bf/yask/bin/yask_kernel.iso3dfd.aarch64.exe on Sun Sep 26 19:15:01 PDT 2021
+TARGET=aarch64
+BLOCK_LOOP_CODE=" loop(1 .. N-1) {  call(calc_mini_block(region_thread_idx, bp, region_shift_num, nphases, phase, nshapes, shape, bridge_mask, rank_idxs, region_idxs, block_idxs)); }"
+BLOCK_LOOP_INNER_MODS=""
+BLOCK_LOOP_OPTS="-ndims 4 -inVar adj_block_idxs"
+BLOCK_LOOP_ORDER="1 .. N-1"
+BLOCK_LOOP_OUTER_MODS=""
+BLOCK_LOOP_OUTER_VARS=""
+DEF_ARGS=""
+EXTRA_MACROS=""
+EXTRA_YC_FLAGS=""
+EXTRA_YK_CXXFLAGS=""
+ISA=
+MACROS="YK_CODE_FILE=/global/home/users/jyoung/git_repos/yask_bf/yask/build/kernel/yask_kernel.iso3dfd.aarch64/gen/yask_stencil_code.hpp USE_NUMA USE_NUMAIF_H ALLOW_NEW_VARS=1 USE_MPI NO_SVML"
+MINI_BLOCK_LOOP_CODE=" omp loop(1 .. N-1) {  call(CALC_SUB_BLOCK); }"
+MINI_BLOCK_LOOP_INNER_MODS=""
+MINI_BLOCK_LOOP_OPTS="-ndims 4 -inVar adj_mb_idxs -ompConstruct 'omp for schedule(static,1) nowait'"
+MINI_BLOCK_LOOP_ORDER="1 .. N-1"
+MINI_BLOCK_LOOP_OUTER_MODS=""
+MINI_BLOCK_LOOP_OUTER_VARS=""
+MISC_LOOP_CODE=" omp loop(1 .. N-1) {  call(MISC_FN); }"
+MISC_LOOP_INNER_MODS=""
+MISC_LOOP_OPTS="-ndims 4 -inVar misc_idxs -ompConstruct 'omp parallel for schedule(guided) proc_bind(spread)'"
+MISC_LOOP_ORDER="1 .. N-1"
+MISC_LOOP_OUTER_MODS=""
+MISC_LOOP_OUTER_VARS=""
+OMPFLAGS="-fopenmp"
+RANK_LOOP_CODE=" loop(1 .. N-1) {  call(calc_region(bp)); }"
+RANK_LOOP_INNER_MODS=""
+RANK_LOOP_OPTS="-ndims 4 -inVar rank_idxs"
+RANK_LOOP_ORDER="1 .. N-1"
+RANK_LOOP_OUTER_MODS=""
+RANK_LOOP_OUTER_VARS=""
+REGION_LOOP_CODE=" omp loop(1 .. N-1) {  call(calc_block(bp, region_shift_num, nphases, phase, rank_idxs)); }"
+REGION_LOOP_INNER_MODS=""
+REGION_LOOP_OPTS="-ndims 4 -inVar region_idxs -ompConstruct 'omp parallel for schedule(dynamic,1) proc_bind(spread)'"
+REGION_LOOP_ORDER="1 .. N-1"
+REGION_LOOP_OUTER_MODS=""
+REGION_LOOP_OUTER_VARS=""
+SUB_BLOCK_LOOP_CODE=" loop(1 .. N-2) {  call(CALC_INNER_LOOP); }"
+SUB_BLOCK_LOOP_INNER_MODS=""
+SUB_BLOCK_LOOP_INNER_VARS=""
+SUB_BLOCK_LOOP_OPTS="-ndims 4 -inVar norm_sub_block_idxs"
+SUB_BLOCK_LOOP_ORDER="1 .. N-2"
+SUB_BLOCK_LOOP_OUTER_MODS=""
+SUB_BLOCK_LOOP_OUTER_VARS=""
+YASK_OUTPUT_DIR=/global/home/users/jyoung/git_repos/yask_bf/yask
+YC_FLAGS="-stencil iso3dfd -target aarch64 -elem-bytes 4"
+YC_STENCIL=iso3dfd
+YC_TARGET=aarch64
+YK_ARCH=aarch64
+YK_BASE=yask_kernel
+YK_CXX=mpic++
+YK_CXXFLAGS="-g -std=c++11 -Wall -I/global/home/users/jyoung/git_repos/yask_bf/yask/include -I/global/home/users/jyoung/git_repos/yask_bf/yask/include/aux -I/global/home/users/jyoung/git_repos/yask_bf/yask/src/kernel/lib -I/global/home/users/jyoung/git_repos/yask_bf/yask/src/common -I/global/home/users/jyoung/git_repos/yask_bf/yask/src/contrib/coefficients -I/global/home/users/jyoung/git_repos/yask_bf/yask/build/kernel/yask_kernel.iso3dfd.aarch64/gen -mcpu=cortex-a72 -mtune=cortex-a72 -Wno-unknown-pragmas -Wno-unused-variable -Wno-unused-but-set-variable -O3 -fopenmp -DYK_CODE_FILE=/global/home/users/jyoung/git_repos/yask_bf/yask/build/kernel/yask_kernel.iso3dfd.aarch64/gen/yask_stencil_code.hpp -DUSE_NUMA -DUSE_NUMAIF_H -DALLOW_NEW_VARS=1 -DUSE_MPI -DNO_SVML "
+YK_CXXOPT=-O3
+YK_EXT_TAG=
+YK_STENCIL=iso3dfd
+YK_TAG=iso3dfd.aarch64
+arch=aarch64
+cluster=
+fold=
+omp_block_schedule=static,1
+omp_misc_schedule=guided
+omp_region_schedule=dynamic,1
+pfd_l1=
+pfd_l2=
+radius=
+real_bytes=4
+stencil=iso3dfd
+streaming_stores=0
+git status
+On branch bf2
+Your branch is up to date with 'origin/bf2'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   ../../README_bf.md
+	new file:   ../../results/README.results
+	new file:   ../../results/bf2/yask.iso3dfd.intel64.thor-omp-8thr-nompi-g16.log
+	new file:   ../../results/bf2/yask.iso3dfd.intel64.thor-omp-8thr-nompi-g256.log
+	new file:   ../../results/bf2/yask.iso3dfd.intel64.thor-omp-8thr-nompi-g64.log
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   ../compiler/lib/Solution.cpp
+	modified:   Makefile.aarch-bf
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../../bin/
+	../../build/
+	../../lib/
+
+uname -a
+Linux thor-bf13.hpcadvisorycouncil.com 5.4.0-1008-bluefield #11-Ubuntu SMP PREEMPT Fri Mar 5 13:59:26 UTC 2021 aarch64 aarch64 aarch64 GNU/Linux
+mpic++ --version
+g++ (GCC) 8.4.1 20200928 (Red Hat 8.4.1-1)
+Copyright (C) 2018 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+make[2]: Leaving directory '/global/home/users/jyoung/git_repos/yask_bf/yask/src/kernel'
+==> ./bin/../build/yask_kernel.iso3dfd.aarch64.yask_compiler-report.txt <==
+YASK -- Yet Another Stencil Kit
+YASK Stencil Compiler Utility
+Copyright (c) 2014-2020, Intel Corporation.
+Version: 3.05.06
+Stencil-solution name: iso3dfd
+Stencil radius: 8
+Stencil-solution description: iso3dfd radius 8
+Output target: aarch64
+Num vars defined: 2
+Num equations defined: 1
+Var: p(t, x, y, z)
+Var: v(x, y, z)
+Step dimension: t
+Domain dimension(s): x, y, z
+ Number of SIMD elements: 1
+ No explicitly-requested vector-folding.
+ Vector-fold dimension(s) and point-size(s): x=1 * y=1 * z=1
+ Cluster dimension(s) and multiplier(s): x=1 * y=1 * z=1
+ Cluster dimension(s) and point-size(s): x=1 * y=1 * z=1
+No misc dimensions used
+
+Processing 1 stencil equation(s)...
+Analyzing for dependencies...
+Finding transitive closure of dependencies...
+Topologically ordering equations...
+
+Partitioning 1 equation(s) into bundles...
+Collapsing dependencies from equations and finding transitive closure...
+Topologically ordering bundles...
+Created 1 equation bundle(s):
+ equation-bundle 'stencil_bundle_0' w/o domain condition w/o step condition:
+  Contains 1 equation(s).
+  Updates the following var(s): p.
+Stats across 1 equation-bundle(s):
+ Expression stats for scalar & vector equation-bundle(s):
+  84 node(s).
+  0 node pair(s).
+  52 var read(s).
+  1 var write(s).
+  61 FP math operation(s).
+ Expression stats after applying common subexpr elimination to scalar & vector equation-bundle(s):
+  83 node(s).
+  0 node pair(s).
+  51 var read(s).
+  1 var write(s).
+  61 FP math operation(s).
+ No changes after applying commutative recombination to scalar & vector equation-bundle(s).
+ No changes after applying common subexpr elimination to scalar & vector equation-bundle(s).
+ No changes after applying function pairing to scalar & vector equation-bundle(s).
+
+Partitioning 1 bundle(s) into stages...
+Collapsing dependencies from bundles and finding transitive closure...
+Topologically ordering stages...
+Created 1 equation stage(s):
+ equation bundle-stage 'stencil_stage_0' w/o step condition:
+  Contains 1 bundle(s): stencil_bundle_0.
+  Updates the following var(s): p.
+
+Constructing cluster of equations containing 1 vector(s)...
+Stats across 1 equation-bundle(s):
+ Expression stats for cluster equation-bundle(s):
+  84 node(s).
+  0 node pair(s).
+  52 var read(s).
+  1 var write(s).
+  61 FP math operation(s).
+ Expression stats after applying common subexpr elimination to cluster equation-bundle(s):
+  83 node(s).
+  0 node pair(s).
+  51 var read(s).
+  1 var write(s).
+  61 FP math operation(s).
+ No changes after applying commutative recombination to cluster equation-bundle(s).
+ No changes after applying common subexpr elimination to cluster equation-bundle(s).
+ No changes after applying function pairing to cluster equation-bundle(s).
+
+Generating 'aarch64' output...
+YASK Stencil Compiler: done.
+===================
++ cd /global/home/users/jyoung/git_repos/yask_bf/yask
++ ulimit -s unlimited
++ sleep 1
++ uptime
+ 20:33:08 up 31 days,  9:46,  1 user,  load average: 0.05, 0.40, 0.32
++ lscpu
+Architecture:        aarch64
+Byte Order:          Little Endian
+CPU(s):              8
+On-line CPU(s) list: 0-7
+Thread(s) per core:  1
+Core(s) per socket:  8
+Socket(s):           1
+NUMA node(s):        1
+Vendor ID:           ARM
+Model:               0
+Model name:          Cortex-A72
+Stepping:            r1p0
+BogoMIPS:            400.00
+L1d cache:           32K
+L1i cache:           48K
+L2 cache:            1024K
+L3 cache:            6144K
+NUMA node0 CPU(s):   0-7
+Flags:               fp asimd evtstrm crc32 cpuid
++ cpuinfo -A
+sh: cpuinfo: command not found
++ sed '/^$/q' /proc/cpuinfo
+processor	: 0
+BogoMIPS	: 400.00
+Features	: fp asimd evtstrm crc32 cpuid
+CPU implementer	: 0x41
+CPU architecture: 8
+CPU variant	: 0x1
+CPU part	: 0xd08
+CPU revision	: 0
+
++ cpupower frequency-info
+analyzing CPU 0:
+  no or unknown cpufreq driver is active on this CPU
+  CPUs which run at the same hardware frequency: Not Available
+  CPUs which need to have their frequency coordinated by software: Not Available
+  maximum transition latency:  Cannot determine or is not supported.
+Not Available
+  available cpufreq governors: Not Available
+  Unable to determine current policy
+  current CPU frequency: Unable to call hardware
+  current CPU frequency:  Unable to call to kernel
++ uname -a
+Linux thor-bf13.hpcadvisorycouncil.com 5.4.0-1008-bluefield #11-Ubuntu SMP PREEMPT Fri Mar 5 13:59:26 UTC 2021 aarch64 aarch64 aarch64 GNU/Linux
++ head -v -n -0 /etc/system-release
+==> /etc/system-release <==
+Rocky Linux release 8.4 (Green Obsidian)
++ head -v -n -0 /proc/cmdline
+==> /proc/cmdline <==
+kernel ro initrd=initfs.gz wwhostname=thor-bf13.hpcadvisorycouncil.com console=ttyAMA0 console=ttyAMA1 console=hvc0 console=tty0 console=ttyS0,115200 wwmaster=192.168.0.1 wwipaddr=192.168.3.113 wwnetmask=255.255.224.0 wwnetdev=eth0 wwhwaddr=b8:ce:f6:9f:9e:0c wwgateway=192.168.0.11
++ head -v -n -0 /proc/meminfo
+==> /proc/meminfo <==
+MemTotal:       16342236 kB
+MemFree:        11337892 kB
+MemAvailable:   11458128 kB
+Buffers:               0 kB
+Cached:          4131684 kB
+SwapCached:            0 kB
+Active:          2008884 kB
+Inactive:        2177860 kB
+Active(anon):    1817648 kB
+Inactive(anon):  2100988 kB
+Active(file):     191236 kB
+Inactive(file):    76872 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:                 4 kB
+Writeback:             0 kB
+AnonPages:         55188 kB
+Mapped:            74396 kB
+Shmem:           3863576 kB
+KReclaimable:      94564 kB
+Slab:             353500 kB
+SReclaimable:      94564 kB
+SUnreclaim:       258936 kB
+KernelStack:        3924 kB
+PageTables:         1724 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     8171116 kB
+Committed_AS:    4094388 kB
+VmallocTotal:   135290159040 kB
+VmallocUsed:       17740 kB
+VmallocChunk:          0 kB
+Percpu:             7072 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+CmaTotal:          32768 kB
+CmaFree:           29264 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
++ free -gt
+              total        used        free      shared  buff/cache   available
+Mem:             15           0          10           3           4          10
+Swap:             0           0           0
+Total:           15           0          10
++ numactl -H
+available: 1 nodes (0)
+node 0 cpus: 0 1 2 3 4 5 6 7
+node 0 size: 15959 MB
+node 0 free: 11072 MB
+node distances:
+node   0 
+  0:  10 
++ ulimit -a
+core file size          (blocks, -c) 0
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 63668
+max locked memory       (kbytes, -l) unlimited
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 4096
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) unlimited
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) 4096
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
++ ldd ./bin/yask_kernel.iso3dfd.aarch64.exe
+	linux-vdso.so.1 (0x0000400017cae000)
+	libyask_kernel.iso3dfd.aarch64.so => /global/home/users/jyoung/git_repos/yask_bf/yask/lib/libyask_kernel.iso3dfd.aarch64.so (0x0000400017ccc000)
+	librt.so.1 => /lib64/librt.so.1 (0x0000400017dcd000)
+	libnuma.so.1 => /lib64/libnuma.so.1 (0x0000400017dee000)
+	libmpi.so.40 => /global/home/users/jyoung/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-ubuntu20.04-aarch64/ompi/lib/libmpi.so.40 (0x0000400017e13000)
+	libstdc++.so.6 => /lib64/libstdc++.so.6 (0x0000400017f35000)
+	libm.so.6 => /lib64/libm.so.6 (0x00004000180d9000)
+	libgomp.so.1 => /lib64/libgomp.so.1 (0x000040001819a000)
+	libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x00004000181eb000)
+	libpthread.so.0 => /lib64/libpthread.so.0 (0x000040001821c000)
+	libc.so.6 => /lib64/libc.so.6 (0x0000400018251000)
+	/lib/ld-linux-aarch64.so.1 (0x0000400017c8a000)
+	libopen-rte.so.40 => /global/home/users/jyoung/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-ubuntu20.04-aarch64/ompi/lib/libopen-rte.so.40 (0x00004000183c6000)
+	libopen-pal.so.40 => /global/home/users/jyoung/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-ubuntu20.04-aarch64/ompi/lib/libopen-pal.so.40 (0x000040001849c000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x00004000185b9000)
+	libudev.so.1 => /lib64/libudev.so.1 (0x00004000185da000)
+	libutil.so.1 => /lib64/libutil.so.1 (0x000040001867b000)
+	libz.so.1 => /lib64/libz.so.1 (0x000040001869c000)
+	libmount.so.1 => /lib64/libmount.so.1 (0x00004000186cd000)
+	libblkid.so.1 => /lib64/libblkid.so.1 (0x000040001873f000)
+	libuuid.so.1 => /lib64/libuuid.so.1 (0x00004000187b1000)
+	libselinux.so.1 => /lib64/libselinux.so.1 (0x00004000187d2000)
+	libpcre2-8.so.0 => /lib64/libpcre2-8.so.0 (0x0000400018815000)
++ date
+Sun Sep 26 20:33:08 PDT 2021
++ true
++ env OMP_DISPLAY_ENV=VERBOSE KMP_VERSION=1 I_MPI_PRINT_VERSION=1 I_MPI_DEBUG=5 LD_LIBRARY_PATH=./lib:/global/home/users/jyoung/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-ubuntu20.04-aarch64/ompi/lib:/global/home/users/jyoung/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-ubuntu20.04-aarch64/sharp/lib:/global/home/users/jyoung/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-ubuntu20.04-aarch64/hcoll/lib:/global/home/users/jyoung/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-ubuntu20.04-aarch64/ucx/mt/lib/ucx:/global/home/users/jyoung/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-ubuntu20.04-aarch64/ucx/mt/lib:/global/home/users/jyoung/lib mpirun -np 8 --hostfile bf2hosts -mca btl self,tcp ./bin/yask_kernel.iso3dfd.aarch64.exe -l 8 -no-use_shm
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '1'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'FALSE'
+  OMP_PLACES = ''
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '2147483647'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'FALSE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  GOMP_CPU_AFFINITY = ''
+  GOMP_STACKSIZE = '0'
+  GOMP_SPINCOUNT = '300000'
+OPENMP DISPLAY ENVIRONMENT END
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '1'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'FALSE'
+  OMP_PLACES = ''
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '2147483647'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'FALSE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  GOMP_CPU_AFFINITY = ''
+  GOMP_STACKSIZE = '0'
+  GOMP_SPINCOUNT = '300000'
+OPENMP DISPLAY ENVIRONMENT END
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '1'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'FALSE'
+  OMP_PLACES = ''
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '2147483647'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'FALSE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  GOMP_CPU_AFFINITY = ''
+  GOMP_STACKSIZE = '0'
+  GOMP_SPINCOUNT = '300000'
+OPENMP DISPLAY ENVIRONMENT END
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '1'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'FALSE'
+  OMP_PLACES = ''
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '2147483647'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'FALSE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  GOMP_CPU_AFFINITY = ''
+  GOMP_STACKSIZE = '0'
+  GOMP_SPINCOUNT = '300000'
+OPENMP DISPLAY ENVIRONMENT END
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '1'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'FALSE'
+  OMP_PLACES = ''
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '2147483647'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'FALSE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  GOMP_CPU_AFFINITY = ''
+  GOMP_STACKSIZE = '0'
+  GOMP_SPINCOUNT = '300000'
+OPENMP DISPLAY ENVIRONMENT END
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '1'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'FALSE'
+  OMP_PLACES = ''
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '2147483647'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'FALSE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  GOMP_CPU_AFFINITY = ''
+  GOMP_STACKSIZE = '0'
+  GOMP_SPINCOUNT = '300000'
+OPENMP DISPLAY ENVIRONMENT END
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '1'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'FALSE'
+  OMP_PLACES = ''
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '2147483647'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'FALSE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  GOMP_CPU_AFFINITY = ''
+  GOMP_STACKSIZE = '0'
+  GOMP_SPINCOUNT = '300000'
+OPENMP DISPLAY ENVIRONMENT END
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '1'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'FALSE'
+  OMP_PLACES = ''
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '2147483647'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'FALSE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  GOMP_CPU_AFFINITY = ''
+  GOMP_STACKSIZE = '0'
+  GOMP_SPINCOUNT = '300000'
+OPENMP DISPLAY ENVIRONMENT END
+[LOG_CAT_ML] component ucx_p2p is not available but requested in hierarchy: ucx_p2p:p2p
+[LOG_CAT_ML] component ucx_p2p is not available but requested in hierarchy: ucx_p2p:p2p
+[LOG_CAT_ML] ml_discover_hierarchy exited with error
+[LOG_CAT_ML] component ucx_p2p is not available but requested in hierarchy: ucx_p2p:p2p
+[LOG_CAT_ML] ml_discover_hierarchy exited with error
+[LOG_CAT_ML] component ucx_p2p is not available but requested in hierarchy: ucx_p2p:p2p
+[LOG_CAT_ML] ml_discover_hierarchy exited with error
+[LOG_CAT_ML] component ucx_p2p is not available but requested in hierarchy: ucx_p2p:p2p
+[LOG_CAT_ML] ml_discover_hierarchy exited with error
+[LOG_CAT_ML] component ucx_p2p is not available but requested in hierarchy: ucx_p2p:p2p
+[LOG_CAT_ML] ml_discover_hierarchy exited with error
+[LOG_CAT_ML] component ucx_p2p is not available but requested in hierarchy: ucx_p2p:p2p
+[LOG_CAT_ML] ml_discover_hierarchy exited with error
+[LOG_CAT_ML] component ucx_p2p is not available but requested in hierarchy: ucx_p2p:p2p
+[LOG_CAT_ML] ml_discover_hierarchy exited with error
+[LOG_CAT_ML] ml_discover_hierarchy exited with error
+ ┌────────────────────────────────────────────┐
+ │     Y.A.S.K. ── Yet Another Stencil Kit    │
+ │       https://github.com/intel/yask        │
+ │ Copyright (c) 2014-2020, Intel Corporation │
+ └────────────────────────────────────────────┘
+
+Version: 3.05.06
+Stencil name: iso3dfd
+Binary invocation: ./bin/yask_kernel.iso3dfd.aarch64.exe -l 8 -no-use_shm
+PID: 683005
+
+Num MPI ranks:            8
+This MPI rank index:      0
+Num OpenMP procs:         1
+Num OpenMP threads avail: 1
+Num OpenMP threads used:  1
+  Num threads per region: 1
+  Num threads per block:  1
+
+Num vars: 2
+Num vars to be updated: 1
+Neighbor #1 is MPI rank 1 at absolute rank indices x=1, y=0, z=0 (x+1, y, z relative to rank 0)
+Neighbor #2 is MPI rank 2 at absolute rank indices x=0, y=1, z=0 (x, y+1, z relative to rank 0)
+Neighbor #3 is MPI rank 3 at absolute rank indices x=1, y=1, z=0 (x+1, y+1, z relative to rank 0)
+Neighbor #4 is MPI rank 4 at absolute rank indices x=0, y=0, z=1 (x, y, z+1 relative to rank 0)
+Neighbor #5 is MPI rank 5 at absolute rank indices x=1, y=0, z=1 (x+1, y, z+1 relative to rank 0)
+Neighbor #6 is MPI rank 6 at absolute rank indices x=0, y=1, z=1 (x, y+1, z+1 relative to rank 0)
+Neighbor #7 is MPI rank 7 at absolute rank indices x=1, y=1, z=1 (x+1, y+1, z+1 relative to rank 0)
+
+Regions:
+ In 'x' dimension, local-domain of size 8 contains 1 region(s) of size 8.
+ In 'y' dimension, local-domain of size 8 contains 1 region(s) of size 8.
+ In 'z' dimension, local-domain of size 8 contains 1 region(s) of size 8.
+ num-regions-per-local-domain-per-step: 1
+ Since the region size in the 't' dim is 0, temporal wave-front rank tiling is NOT enabled.
+
+Blocks:
+ In 'x' dimension, region of size 8 contains 0 block(s) of size 48 plus 1 remainder block of size 8.
+ In 'y' dimension, region of size 8 contains 0 block(s) of size 64 plus 1 remainder block of size 8.
+ In 'z' dimension, region of size 8 contains 0 block(s) of size 112 plus 1 remainder block of size 8.
+ num-blocks-per-region-per-step: 1
+ num-blocks-per-local-domain-per-step: 1
+ Since the block size in the 't' dim is 0, temporal blocking is NOT enabled.
+
+Mini-blocks:
+ In 'x' dimension, block of size 48 contains 1 mini-block(s) of size 48.
+ In 'y' dimension, block of size 64 contains 1 mini-block(s) of size 64.
+ In 'z' dimension, block of size 112 contains 1 mini-block(s) of size 112.
+ num-mini-blocks-per-block-per-step: 1
+ num-mini-blocks-per-region-per-step: 1
+ num-mini-blocks-per-local-domain-per-step: 1
+ Since the mini-block size in the 't' dim is 0, temporal wave-front block tiling is NOT enabled.
+
+Sub-blocks:
+ In 'x' dimension, mini-block of size 48 contains 48 sub-block(s) of size 1.
+ In 'y' dimension, mini-block of size 64 contains 1 sub-block(s) of size 64.
+ In 'z' dimension, mini-block of size 112 contains 1 sub-block(s) of size 112.
+ num-sub-blocks-per-mini-block-per-step: 48
+ num-sub-blocks-per-block-per-step: 48
+ num-sub-blocks-per-region-per-step: 48
+ num-sub-blocks-per-rank-per-step: 48
+Constructing bounding boxes for 1 stencil-bundles(s)...
+Bounding-box construction done in 15.993u secs.
+Allocating 147.312KiB for 2 var(s) preferring local NUMA node...
+'p' 4-D var (t=2 * x=26 * y=26 * z=27) with storage at 0x400037a2e000 containing 142.594KiB (36.504K SIMD FP element(s) of 4 byte(s) each) and meta-data at 0x11f28de0
+'v' 3-D var (x=10 * y=10 * z=11) with storage at 0x400037a51b40 containing 4.29688KiB (1.1K SIMD FP element(s) of 4 byte(s) each) and meta-data at 0x11f29220
+Allocating 97.125KiB for 6 MPI buffer(s) preferring local NUMA node...
+Allocation done in 956.322u secs.
+
+Domain size in this rank (points):          512
+Total allocation in this rank:              147.266KiB
+Overall problem size in 8 rank(s) (points): 4.096K
+Total overall allocation in 8 rank(s):      1.15051MiB
+
+Work-unit sizes in points (from smallest to largest):
+ vector-size:           x=1 * y=1 * z=1
+ cluster-size:          x=1 * y=1 * z=1
+ sub-block-size:        x=1 * y=64 * z=112
+ mini-block-size:       t=0 * x=48 * y=64 * z=112
+ block-size:            t=0 * x=48 * y=64 * z=112
+ region-size:           t=0 * x=8 * y=8 * z=8
+ local-domain-size:     x=8 * y=8 * z=8
+ global-domain-size:    x=16 * y=16 * z=16
+
+Other settings:
+ yask-version:          3.05.06
+ target:                aarch64
+ stencil-name:          iso3dfd
+ stencil-description:   iso3dfd radius 8
+ element-size:          4B
+ local-domain:          x=0, y=0, z=0 ... x=7, y=7, z=7
+ num-ranks:             x=2 * y=2 * z=2
+ rank-indices:          x=0, y=0, z=0
+ local-domain-offsets:  x=0, y=0, z=0
+ mpi-interior:          x=0, y=0, z=0 ... x=-1, y=-1, z=-1
+ vector-len:            1
+ extra-padding:         x=1, y=1, z=1
+ minimum-padding:       x=0, y=0, z=0
+ allow-addl-padding:    true
+ L1-prefetch-distance:  0
+ L2-prefetch-distance:  0
+ max-halos:             x=8, y=8, z=8
+ num-wave-front-steps:      0
+ num-temporal-block-steps:  0
+
+Num stages:             1
+Num stencil bundles:    1
+Num stencil equations:  1
+
+Breakdown of work stats in this rank:
+Stage 'stencil_stage_0':
+ num bundles:                 1
+ stage scope:                 x=0, y=0, z=0 ... x=7, y=7, z=7
+ Bundle 'stencil_bundle_0':
+  num reqd scratch bundles:   0
+  bundle size (points):       512
+  valid points in bundle:     512
+  bundle scope:               x=0, y=0, z=0 ... x=7, y=7, z=7
+  bundle bounding-box size:   x=8 * y=8 * z=8
+  num full rectangles in box: 1
+  var-reads per point:        51
+  var-reads in rank:          26.112K
+  var-writes per point:       1
+  var-writes in rank:         512
+  est FP-ops per point:       61
+  est FP-ops in rank:         31.232K
+  num input-only domain vars:    1
+  input-only domain vars:        v
+  num output-only domain vars:   0
+  num input-output domain vars:  1
+  input-output domain vars:      p
+  num input-only other vars:     0
+  num output-only other vars:    0
+  num input-output other vars:   0
+Initializing vars...
+Var initialization done in 391.957u secs.
+Auto-tuning...
+auto-tuner: finished warmup for 100 steps(s) in 3.86221m secs
+auto-tuner: tuning block sizes...
+auto-tuner: search-dist=8: 11.9172K steps/sec (100 steps(s) in 8.39122m secs) with size x=4 * y=4 * z=4 -- best so far
+auto-tuner: applying size t=0 * x=4 * y=4 * z=4
+auto-tuner: done
+Waiting for auto-tuner to converge on all ranks...
+Auto-tuner done after 200 step(s) in 13.4094m secs.
+auto-tuner: best-block-size: x=4 * y=4 * z=4
+auto-tuner: mini-block-size: x=4 * y=4 * z=4
+auto-tuner: sub-block-size: x=1 * y=4 * z=4
+ num-wave-front-steps:      0
+ num-temporal-block-steps:  0
+
+──────────────────────────────────────────────────────────────────────
+Running 1 step(s) for warm-up...
+  Done in 2.45346m secs.
+Running 10 step(s) for calibration...
+  Done in 8.28876m secs.
+Running 100 step(s) for calibration...
+  Done in 82.5498m secs.
+
+──────────────────────────────────────────────────────────────────────
+Running 3 performance trial(s) of 12053 step(s) each...
+──────────────────────────────────────────────────────────────────────
+Trial number:                      1
+
+Work stats:
+ num-steps-done:                   12.053K
+ num-reads-per-step:               208.896K
+ num-writes-per-step:              4.096K
+ num-est-FP-ops-per-step:          249.856K
+ num-points-per-step:              4.096K
+
+Time stats:
+ elapsed-time (sec):               9.87315
+ Time breakdown by activity type:
+  compute time (sec):                1.10079 (11.149375%)
+  halo exchange time (sec):          8.72084 (88.328827%)
+  other time (sec):                  51.5177m (0.521796%)
+ Compute-time breakdown by halo area:
+  rank-exterior compute (sec):       1.09366 (99.352211%)
+  rank-interior compute (sec):       7.13084m (0.647790%)
+ Halo-time breakdown:
+  MPI waits (sec):                   502.365m (5.760513%)
+  MPI tests (sec):                   0 (0.000000%)
+  packing, unpacking, etc. (sec):    8.21847 (94.239487%)
+
+Rate stats:
+ throughput (num-reads/sec):       255.017M
+ throughput (num-writes/sec):      5.00034M
+ throughput (est-FLOPS):           305.021M
+ throughput (num-points/sec):      5.00034M
+──────────────────────────────────────────────────────────────────────
+Trial number:                      2
+
+Work stats:
+ num-steps-done:                   12.053K
+ num-reads-per-step:               208.896K
+ num-writes-per-step:              4.096K
+ num-est-FP-ops-per-step:          249.856K
+ num-points-per-step:              4.096K
+
+Time stats:
+ elapsed-time (sec):               10.0667
+ Time breakdown by activity type:
+  compute time (sec):                1.13972 (11.321674%)
+  halo exchange time (sec):          8.86449 (88.057457%)
+  other time (sec):                  62.5008m (0.620866%)
+ Compute-time breakdown by halo area:
+  rank-exterior compute (sec):       1.13075 (99.213318%)
+  rank-interior compute (sec):       8.96602m (0.786686%)
+ Halo-time breakdown:
+  MPI waits (sec):                   614.055m (6.927135%)
+  MPI tests (sec):                   0 (0.000000%)
+  packing, unpacking, etc. (sec):    8.25044 (93.072868%)
+
+Rate stats:
+ throughput (num-reads/sec):       250.114M
+ throughput (num-writes/sec):      4.90419M
+ throughput (est-FLOPS):           299.156M
+ throughput (num-points/sec):      4.90419M
+──────────────────────────────────────────────────────────────────────
+Trial number:                      3
+
+Work stats:
+ num-steps-done:                   12.053K
+ num-reads-per-step:               208.896K
+ num-writes-per-step:              4.096K
+ num-est-FP-ops-per-step:          249.856K
+ num-points-per-step:              4.096K
+
+Time stats:
+ elapsed-time (sec):               10.0137
+ Time breakdown by activity type:
+  compute time (sec):                1.14653 (11.449563%)
+  halo exchange time (sec):          8.80381 (87.917526%)
+  other time (sec):                  63.3782m (0.632914%)
+ Compute-time breakdown by halo area:
+  rank-exterior compute (sec):       1.13648 (99.123878%)
+  rank-interior compute (sec):       10.045m (0.876124%)
+ Halo-time breakdown:
+  MPI waits (sec):                   674.39m (7.660214%)
+  MPI tests (sec):                   0 (0.000000%)
+  packing, unpacking, etc. (sec):    8.12942 (92.339783%)
+
+Rate stats:
+ throughput (num-reads/sec):       251.438M
+ throughput (num-writes/sec):      4.93015M
+ throughput (est-FLOPS):           300.739M
+ throughput (num-points/sec):      4.93015M
+──────────────────────────────────────────────────────────────────────
+Performance stats of best trial:
+ best-num-steps-done:              12053
+ best-elapsed-time (sec):          9.87315
+ best-throughput (num-reads/sec):  255.017M
+ best-throughput (num-writes/sec): 5.00034M
+ best-throughput (est-FLOPS):      305.021M
+ best-throughput (num-points/sec): 5.00034M
+──────────────────────────────────────────────────────────────────────
+Performance stats of 50th-percentile trial:
+ mid-num-steps-done:               12053
+ mid-elapsed-time (sec):           10.0137
+ mid-throughput (num-reads/sec):   251.438M
+ mid-throughput (num-writes/sec):  4.93015M
+ mid-throughput (est-FLOPS):       300.739M
+ mid-throughput (num-points/sec):  4.93015M
+──────────────────────────────────────────────────────────────────────
+Notes:
+ The 50th-percentile trial is the same as the median trial
+  when there is an odd number of trials. When there is an even
+  number of trials, the nearest-rank method is used. An odd
+  number of trials is recommended.
+ Num-reads/sec, num-writes/sec, and FLOPS are metrics based on
+  stencil specifications and can vary due to differences in
+  implementations and optimizations.
+ Num-points/sec is based on overall problem size and is
+  a more reliable performance metric, esp. when comparing
+  across implementations.
+
+Results NOT VERIFIED.
+Stencil 'iso3dfd'.
+YASK DONE.
+──────────────────────────────────────────────────────────────────────
+===================
+'mpirun -np 8 --hostfile bf2hosts -mca btl self,tcp ./bin/yask_kernel.iso3dfd.aarch64.exe -l 8 -no-use_shm' ran successfully.

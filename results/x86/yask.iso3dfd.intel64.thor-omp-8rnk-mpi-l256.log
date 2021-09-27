@@ -1,0 +1,961 @@
+Invocation: ./bin/yask.sh -mpi_cmd 'mpirun -np 8 --hostfile thorhosts -mca btl self,tcp' -l 256 -no-use_shm -stencil iso3dfd -arch intel64
+==> ./bin/../build/yask_kernel.iso3dfd.intel64.make-report.txt <==
+MAKEFLAGS="w -j -- YASK_OUTPUT_DIR=/global/home/users/jyoung/git_repos/yask_x86/yask arch=intel64 stencil=iso3dfd"
+make[2]: Entering directory '/global/home/users/jyoung/git_repos/yask_x86/yask/src/kernel'
+Build environment for /global/home/users/jyoung/git_repos/yask_x86/yask/bin/yask_kernel.iso3dfd.intel64.exe on Sun Sep 26 18:08:54 PDT 2021
+TARGET=intel64
+BLOCK_LOOP_CODE=" loop(1 .. N-1) {  call(calc_mini_block(region_thread_idx, bp, region_shift_num, nphases, phase, nshapes, shape, bridge_mask, rank_idxs, region_idxs, block_idxs)); }"
+BLOCK_LOOP_INNER_MODS=""
+BLOCK_LOOP_OPTS="-ndims 4 -inVar adj_block_idxs"
+BLOCK_LOOP_ORDER="1 .. N-1"
+BLOCK_LOOP_OUTER_MODS=""
+BLOCK_LOOP_OUTER_VARS=""
+DEF_ARGS=""
+EXTRA_MACROS=""
+EXTRA_YC_FLAGS=""
+EXTRA_YK_CXXFLAGS=""
+ISA=
+MACROS="YK_CODE_FILE=/global/home/users/jyoung/git_repos/yask_x86/yask/build/kernel/yask_kernel.iso3dfd.intel64/gen/yask_stencil_code.hpp USE_NUMA USE_NUMAIF_H ALLOW_NEW_VARS=1 USE_MPI NO_SVML"
+MINI_BLOCK_LOOP_CODE=" omp loop(1 .. N-1) {  call(CALC_SUB_BLOCK); }"
+MINI_BLOCK_LOOP_INNER_MODS=""
+MINI_BLOCK_LOOP_OPTS="-ndims 4 -inVar adj_mb_idxs -ompConstruct 'omp for schedule(static,1) nowait'"
+MINI_BLOCK_LOOP_ORDER="1 .. N-1"
+MINI_BLOCK_LOOP_OUTER_MODS=""
+MINI_BLOCK_LOOP_OUTER_VARS=""
+MISC_LOOP_CODE=" omp loop(1 .. N-1) {  call(MISC_FN); }"
+MISC_LOOP_INNER_MODS=""
+MISC_LOOP_OPTS="-ndims 4 -inVar misc_idxs -ompConstruct 'omp parallel for schedule(guided) proc_bind(spread)'"
+MISC_LOOP_ORDER="1 .. N-1"
+MISC_LOOP_OUTER_MODS=""
+MISC_LOOP_OUTER_VARS=""
+OMPFLAGS="-fopenmp"
+RANK_LOOP_CODE=" loop(1 .. N-1) {  call(calc_region(bp)); }"
+RANK_LOOP_INNER_MODS=""
+RANK_LOOP_OPTS="-ndims 4 -inVar rank_idxs"
+RANK_LOOP_ORDER="1 .. N-1"
+RANK_LOOP_OUTER_MODS=""
+RANK_LOOP_OUTER_VARS=""
+REGION_LOOP_CODE=" omp loop(1 .. N-1) {  call(calc_block(bp, region_shift_num, nphases, phase, rank_idxs)); }"
+REGION_LOOP_INNER_MODS=""
+REGION_LOOP_OPTS="-ndims 4 -inVar region_idxs -ompConstruct 'omp parallel for schedule(dynamic,1) proc_bind(spread)'"
+REGION_LOOP_ORDER="1 .. N-1"
+REGION_LOOP_OUTER_MODS=""
+REGION_LOOP_OUTER_VARS=""
+SUB_BLOCK_LOOP_CODE=" loop(1 .. N-2) {  call(CALC_INNER_LOOP); }"
+SUB_BLOCK_LOOP_INNER_MODS=""
+SUB_BLOCK_LOOP_INNER_VARS=""
+SUB_BLOCK_LOOP_OPTS="-ndims 4 -inVar norm_sub_block_idxs"
+SUB_BLOCK_LOOP_ORDER="1 .. N-2"
+SUB_BLOCK_LOOP_OUTER_MODS=""
+SUB_BLOCK_LOOP_OUTER_VARS=""
+YASK_OUTPUT_DIR=/global/home/users/jyoung/git_repos/yask_x86/yask
+YC_FLAGS="-stencil iso3dfd -target intel64 -elem-bytes 4"
+YC_STENCIL=iso3dfd
+YC_TARGET=intel64
+YK_ARCH=intel64
+YK_BASE=yask_kernel
+YK_CXX=mpic++
+YK_CXXFLAGS="-g -std=c++11 -Wall -I/global/home/users/jyoung/git_repos/yask_x86/yask/include -I/global/home/users/jyoung/git_repos/yask_x86/yask/include/aux -I/global/home/users/jyoung/git_repos/yask_x86/yask/src/kernel/lib -I/global/home/users/jyoung/git_repos/yask_x86/yask/src/common -I/global/home/users/jyoung/git_repos/yask_x86/yask/src/contrib/coefficients -I/global/home/users/jyoung/git_repos/yask_x86/yask/build/kernel/yask_kernel.iso3dfd.intel64/gen -march=native -Wno-unknown-pragmas -Wno-unused-variable -Wno-unused-but-set-variable -O3 -fopenmp -DYK_CODE_FILE=/global/home/users/jyoung/git_repos/yask_x86/yask/build/kernel/yask_kernel.iso3dfd.intel64/gen/yask_stencil_code.hpp -DUSE_NUMA -DUSE_NUMAIF_H -DALLOW_NEW_VARS=1 -DUSE_MPI -DNO_SVML "
+YK_CXXOPT=-O3
+YK_EXT_TAG=
+YK_STENCIL=iso3dfd
+YK_TAG=iso3dfd.intel64
+arch=intel64
+cluster=
+fold=
+omp_block_schedule=static,1
+omp_misc_schedule=guided
+omp_region_schedule=dynamic,1
+pfd_l1=
+pfd_l2=
+radius=
+real_bytes=4
+stencil=iso3dfd
+streaming_stores=0
+git status
+On branch bf2
+Your branch is up to date with 'origin/bf2'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../../bin/
+	../../build/
+	../../compile.out
+	../../lib/
+
+nothing added to commit but untracked files present (use "git add" to track)
+uname -a
+Linux login01.hpcadvisorycouncil.com 4.18.0-305.10.2.el8_4.x86_64 #1 SMP Tue Jul 20 20:34:55 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+mpic++ --version
+g++ (GCC) 8.4.1 20200928 (Red Hat 8.4.1-1)
+Copyright (C) 2018 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+make[2]: Leaving directory '/global/home/users/jyoung/git_repos/yask_x86/yask/src/kernel'
+==> ./bin/../build/yask_kernel.iso3dfd.intel64.yask_compiler-report.txt <==
+YASK -- Yet Another Stencil Kit
+YASK Stencil Compiler Utility
+Copyright (c) 2014-2020, Intel Corporation.
+Version: 3.05.06
+Stencil-solution name: iso3dfd
+Stencil radius: 8
+Stencil-solution description: iso3dfd radius 8
+Output target: intel64
+Num vars defined: 2
+Num equations defined: 1
+Var: p(t, x, y, z)
+Var: v(x, y, z)
+Step dimension: t
+Domain dimension(s): x, y, z
+ Number of SIMD elements: 1
+ No explicitly-requested vector-folding.
+ Vector-fold dimension(s) and point-size(s): x=1 * y=1 * z=1
+ Cluster dimension(s) and multiplier(s): x=1 * y=1 * z=1
+ Cluster dimension(s) and point-size(s): x=1 * y=1 * z=1
+No misc dimensions used
+
+Processing 1 stencil equation(s)...
+Analyzing for dependencies...
+Finding transitive closure of dependencies...
+Topologically ordering equations...
+
+Partitioning 1 equation(s) into bundles...
+Collapsing dependencies from equations and finding transitive closure...
+Topologically ordering bundles...
+Created 1 equation bundle(s):
+ equation-bundle 'stencil_bundle_0' w/o domain condition w/o step condition:
+  Contains 1 equation(s).
+  Updates the following var(s): p.
+Stats across 1 equation-bundle(s):
+ Expression stats for scalar & vector equation-bundle(s):
+  84 node(s).
+  0 node pair(s).
+  52 var read(s).
+  1 var write(s).
+  61 FP math operation(s).
+ Expression stats after applying common subexpr elimination to scalar & vector equation-bundle(s):
+  83 node(s).
+  0 node pair(s).
+  51 var read(s).
+  1 var write(s).
+  61 FP math operation(s).
+ No changes after applying commutative recombination to scalar & vector equation-bundle(s).
+ No changes after applying common subexpr elimination to scalar & vector equation-bundle(s).
+ No changes after applying function pairing to scalar & vector equation-bundle(s).
+
+Partitioning 1 bundle(s) into stages...
+Collapsing dependencies from bundles and finding transitive closure...
+Topologically ordering stages...
+Created 1 equation stage(s):
+ equation bundle-stage 'stencil_stage_0' w/o step condition:
+  Contains 1 bundle(s): stencil_bundle_0.
+  Updates the following var(s): p.
+
+Constructing cluster of equations containing 1 vector(s)...
+Stats across 1 equation-bundle(s):
+ Expression stats for cluster equation-bundle(s):
+  84 node(s).
+  0 node pair(s).
+  52 var read(s).
+  1 var write(s).
+  61 FP math operation(s).
+ Expression stats after applying common subexpr elimination to cluster equation-bundle(s):
+  83 node(s).
+  0 node pair(s).
+  51 var read(s).
+  1 var write(s).
+  61 FP math operation(s).
+ No changes after applying commutative recombination to cluster equation-bundle(s).
+ No changes after applying common subexpr elimination to cluster equation-bundle(s).
+ No changes after applying function pairing to cluster equation-bundle(s).
+
+Generating 'intel64' output...
+YASK Stencil Compiler: done.
+===================
++ cd /global/home/users/jyoung/git_repos/yask_x86/yask
++ ulimit -s unlimited
++ sleep 1
++ uptime
+ 20:45:41 up 31 days,  9:57,  1 user,  load average: 1.24, 1.07, 1.02
++ lscpu
+Architecture:        x86_64
+CPU op-mode(s):      32-bit, 64-bit
+Byte Order:          Little Endian
+CPU(s):              32
+On-line CPU(s) list: 0-31
+Thread(s) per core:  1
+Core(s) per socket:  16
+Socket(s):           2
+NUMA node(s):        2
+Vendor ID:           GenuineIntel
+CPU family:          6
+Model:               79
+Model name:          Intel(R) Xeon(R) CPU E5-2697A v4 @ 2.60GHz
+Stepping:            1
+CPU MHz:             3411.511
+BogoMIPS:            5200.02
+Virtualization:      VT-x
+L1d cache:           32K
+L1i cache:           32K
+L2 cache:            256K
+L3 cache:            40960K
+NUMA node0 CPU(s):   0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30
+NUMA node1 CPU(s):   1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31
+Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb cat_l3 cdp_l3 invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm cqm rdt_a rdseed adx smap intel_pt xsaveopt cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local dtherm ida arat pln pts md_clear flush_l1d
++ cpuinfo -A
+sh: cpuinfo: command not found
++ sed '/^$/q' /proc/cpuinfo
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 79
+model name	: Intel(R) Xeon(R) CPU E5-2697A v4 @ 2.60GHz
+stepping	: 1
+microcode	: 0xb00003e
+cpu MHz		: 3254.564
+cache size	: 40960 KB
+physical id	: 0
+siblings	: 16
+core id		: 0
+cpu cores	: 16
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 20
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb cat_l3 cdp_l3 invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm cqm rdt_a rdseed adx smap intel_pt xsaveopt cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local dtherm ida arat pln pts md_clear flush_l1d
+bugs		: cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs taa itlb_multihit
+bogomips	: 5200.02
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
++ cpupower frequency-info
+analyzing CPU 0:
+  no or unknown cpufreq driver is active on this CPU
+  CPUs which run at the same hardware frequency: Not Available
+  CPUs which need to have their frequency coordinated by software: Not Available
+  maximum transition latency:  Cannot determine or is not supported.
+Not Available
+  available cpufreq governors: Not Available
+  Unable to determine current policy
+  current CPU frequency: Unable to call hardware
+  current CPU frequency:  Unable to call to kernel
+  boost state support:
+    Supported: yes
+    Active: yes
++ uname -a
+Linux thor013.hpcadvisorycouncil.com 4.18.0-305.10.2.el8_4.x86_64 #1 SMP Tue Jul 20 20:34:55 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
++ head -v -n -0 /etc/system-release
+==> /etc/system-release <==
+Rocky Linux release 8.4 (Green Obsidian)
++ head -v -n -0 /proc/cmdline
+==> /proc/cmdline <==
+kernel ro initrd=initfs.gz wwhostname=thor013.hpcadvisorycouncil.com intel_pstate=disable console=tty0 console=ttyS0,115200 wwmaster=192.168.0.1 wwipaddr=192.168.3.13 wwnetmask=255.255.224.0 wwnetdev=eth0 wwhwaddr=b8:2a:72:db:c5:08 wwgateway=192.168.0.11
++ head -v -n -0 /proc/meminfo
+==> /proc/meminfo <==
+MemTotal:       264027204 kB
+MemFree:        256699456 kB
+MemAvailable:   255617096 kB
+Buffers:               0 kB
+Cached:          5193336 kB
+SwapCached:            0 kB
+Active:            61768 kB
+Inactive:        5247016 kB
+Active(anon):      60928 kB
+Inactive(anon):  5232168 kB
+Active(file):        840 kB
+Inactive(file):    14848 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:                 4 kB
+Writeback:             0 kB
+AnonPages:        111972 kB
+Mapped:           120408 kB
+Shmem:           5177648 kB
+KReclaimable:     102920 kB
+Slab:             641208 kB
+SReclaimable:     102920 kB
+SUnreclaim:       538288 kB
+KernelStack:        9616 kB
+PageTables:         6024 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    132013600 kB
+Committed_AS:    5604592 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+Percpu:            40064 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:     61440 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:     2261020 kB
+DirectMap2M:    94109696 kB
+DirectMap1G:    174063616 kB
++ free -gt
+              total        used        free      shared  buff/cache   available
+Mem:            251           1         244           4           5         243
+Swap:             0           0           0
+Total:          251           1         244
++ numactl -H
+available: 2 nodes (0-1)
+node 0 cpus: 0 2 4 6 8 10 12 14 16 18 20 22 24 26 28 30
+node 0 size: 128819 MB
+node 0 free: 124369 MB
+node 1 cpus: 1 3 5 7 9 11 13 15 17 19 21 23 25 27 29 31
+node 1 size: 129019 MB
+node 1 free: 126313 MB
+node distances:
+node   0   1 
+  0:  10  21 
+  1:  21  10 
++ ulimit -a
+core file size          (blocks, -c) 0
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 1031216
+max locked memory       (kbytes, -l) unlimited
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 4096
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) unlimited
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) 4096
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
++ ldd ./bin/yask_kernel.iso3dfd.intel64.exe
+	linux-vdso.so.1 (0x00007fffd85d7000)
+	libyask_kernel.iso3dfd.intel64.so => /global/home/users/jyoung/git_repos/yask_x86/yask/lib/libyask_kernel.iso3dfd.intel64.so (0x000014e44bf41000)
+	librt.so.1 => /lib64/librt.so.1 (0x000014e44bd39000)
+	libnuma.so.1 => /lib64/libnuma.so.1 (0x000014e44bb2d000)
+	libmpi.so.40 => /global/home/users/jyoung/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-redhat8.4-x86_64/ompi/lib/libmpi.so.40 (0x000014e44b827000)
+	libstdc++.so.6 => /lib64/libstdc++.so.6 (0x000014e44b492000)
+	libm.so.6 => /lib64/libm.so.6 (0x000014e44b110000)
+	libgomp.so.1 => /lib64/libgomp.so.1 (0x000014e44aed8000)
+	libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x000014e44acc0000)
+	libpthread.so.0 => /lib64/libpthread.so.0 (0x000014e44aaa0000)
+	libc.so.6 => /lib64/libc.so.6 (0x000014e44a6db000)
+	/lib64/ld-linux-x86-64.so.2 (0x000014e44c245000)
+	libopen-rte.so.40 => /global/home/users/jyoung/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-redhat8.4-x86_64/ompi/lib/libopen-rte.so.40 (0x000014e44a425000)
+	libopen-pal.so.40 => /global/home/users/jyoung/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-redhat8.4-x86_64/ompi/lib/libopen-pal.so.40 (0x000014e44a11c000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x000014e449f18000)
+	libudev.so.1 => /lib64/libudev.so.1 (0x000014e449c82000)
+	libutil.so.1 => /lib64/libutil.so.1 (0x000014e449a7e000)
+	libz.so.1 => /lib64/libz.so.1 (0x000014e449867000)
+	libmount.so.1 => /lib64/libmount.so.1 (0x000014e44960d000)
+	libblkid.so.1 => /lib64/libblkid.so.1 (0x000014e4493ba000)
+	libuuid.so.1 => /lib64/libuuid.so.1 (0x000014e4491b2000)
+	libselinux.so.1 => /lib64/libselinux.so.1 (0x000014e448f88000)
+	libpcre2-8.so.0 => /lib64/libpcre2-8.so.0 (0x000014e448d04000)
++ date
+Sun Sep 26 20:45:41 PDT 2021
++ true
++ env OMP_DISPLAY_ENV=VERBOSE KMP_VERSION=1 I_MPI_PRINT_VERSION=1 I_MPI_DEBUG=5 LD_LIBRARY_PATH=./lib:/global/home/users/jyoung/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-redhat8.4-x86_64/ompi/lib:/global/home/users/jyoung/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-redhat8.4-x86_64/nccl_rdma_sharp_plugin/lib:/global/home/users/jyoung/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-redhat8.4-x86_64/sharp/lib:/global/home/users/jyoung/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-redhat8.4-x86_64/hcoll/lib:/global/home/users/jyoung/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-redhat8.4-x86_64/ucx/mt/lib/ucx:/global/home/users/jyoung/compilers/hpcx-v2.9.0-gcc-MLNX_OFED_LINUX-5.4-1.0.3.0-redhat8.4-x86_64/ucx/mt/lib:/global/home/users/jyoung/lib mpirun -np 8 --hostfile thorhosts -mca btl self,tcp ./bin/yask_kernel.iso3dfd.intel64.exe -l 256 -no-use_shm
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '1'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'FALSE'
+  OMP_PLACES = ''
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '2147483647'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'FALSE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  GOMP_CPU_AFFINITY = ''
+  GOMP_STACKSIZE = '0'
+  GOMP_SPINCOUNT = '300000'
+OPENMP DISPLAY ENVIRONMENT END
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '1'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'FALSE'
+  OMP_PLACES = ''
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '2147483647'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'FALSE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  GOMP_CPU_AFFINITY = ''
+  GOMP_STACKSIZE = '0'
+  GOMP_SPINCOUNT = '300000'
+OPENMP DISPLAY ENVIRONMENT END
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '1'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'FALSE'
+  OMP_PLACES = ''
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '2147483647'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'FALSE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  GOMP_CPU_AFFINITY = ''
+  GOMP_STACKSIZE = '0'
+  GOMP_SPINCOUNT = '300000'
+OPENMP DISPLAY ENVIRONMENT END
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '1'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'FALSE'
+  OMP_PLACES = ''
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '2147483647'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'FALSE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  GOMP_CPU_AFFINITY = ''
+  GOMP_STACKSIZE = '0'
+  GOMP_SPINCOUNT = '300000'
+OPENMP DISPLAY ENVIRONMENT END
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '1'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'FALSE'
+  OMP_PLACES = ''
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '2147483647'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'FALSE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  GOMP_CPU_AFFINITY = ''
+  GOMP_STACKSIZE = '0'
+  GOMP_SPINCOUNT = '300000'
+OPENMP DISPLAY ENVIRONMENT END
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '1'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'FALSE'
+  OMP_PLACES = ''
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '2147483647'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'FALSE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  GOMP_CPU_AFFINITY = ''
+  GOMP_STACKSIZE = '0'
+  GOMP_SPINCOUNT = '300000'
+OPENMP DISPLAY ENVIRONMENT END
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '1'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'FALSE'
+  OMP_PLACES = ''
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '2147483647'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'FALSE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  GOMP_CPU_AFFINITY = ''
+  GOMP_STACKSIZE = '0'
+  GOMP_SPINCOUNT = '300000'
+OPENMP DISPLAY ENVIRONMENT END
+
+OPENMP DISPLAY ENVIRONMENT BEGIN
+  _OPENMP = '201511'
+  OMP_DYNAMIC = 'FALSE'
+  OMP_NESTED = 'FALSE'
+  OMP_NUM_THREADS = '1'
+  OMP_SCHEDULE = 'DYNAMIC'
+  OMP_PROC_BIND = 'FALSE'
+  OMP_PLACES = ''
+  OMP_STACKSIZE = '0'
+  OMP_WAIT_POLICY = 'PASSIVE'
+  OMP_THREAD_LIMIT = '4294967295'
+  OMP_MAX_ACTIVE_LEVELS = '2147483647'
+  OMP_CANCELLATION = 'FALSE'
+  OMP_DEFAULT_DEVICE = '0'
+  OMP_MAX_TASK_PRIORITY = '0'
+  OMP_DISPLAY_AFFINITY = 'FALSE'
+  OMP_AFFINITY_FORMAT = 'level %L thread %i affinity %A'
+  GOMP_CPU_AFFINITY = ''
+  GOMP_STACKSIZE = '0'
+  GOMP_SPINCOUNT = '300000'
+OPENMP DISPLAY ENVIRONMENT END
+ ┌────────────────────────────────────────────┐
+ │     Y.A.S.K. ── Yet Another Stencil Kit    │
+ │       https://github.com/intel/yask        │
+ │ Copyright (c) 2014-2020, Intel Corporation │
+ └────────────────────────────────────────────┘
+
+Version: 3.05.06
+Stencil name: iso3dfd
+Binary invocation: ./bin/yask_kernel.iso3dfd.intel64.exe -l 256 -no-use_shm
+PID: 1086426
+
+Num MPI ranks:            8
+This MPI rank index:      0
+Num OpenMP procs:         1
+Num OpenMP threads avail: 1
+Num OpenMP threads used:  1
+  Num threads per region: 1
+  Num threads per block:  1
+
+Num vars: 2
+Num vars to be updated: 1
+Neighbor #1 is MPI rank 1 at absolute rank indices x=1, y=0, z=0 (x+1, y, z relative to rank 0)
+Neighbor #2 is MPI rank 2 at absolute rank indices x=0, y=1, z=0 (x, y+1, z relative to rank 0)
+Neighbor #3 is MPI rank 3 at absolute rank indices x=1, y=1, z=0 (x+1, y+1, z relative to rank 0)
+Neighbor #4 is MPI rank 4 at absolute rank indices x=0, y=0, z=1 (x, y, z+1 relative to rank 0)
+Neighbor #5 is MPI rank 5 at absolute rank indices x=1, y=0, z=1 (x+1, y, z+1 relative to rank 0)
+Neighbor #6 is MPI rank 6 at absolute rank indices x=0, y=1, z=1 (x, y+1, z+1 relative to rank 0)
+Neighbor #7 is MPI rank 7 at absolute rank indices x=1, y=1, z=1 (x+1, y+1, z+1 relative to rank 0)
+
+Regions:
+ In 'x' dimension, local-domain of size 256 contains 1 region(s) of size 256.
+ In 'y' dimension, local-domain of size 256 contains 1 region(s) of size 256.
+ In 'z' dimension, local-domain of size 256 contains 1 region(s) of size 256.
+ num-regions-per-local-domain-per-step: 1
+ Since the region size in the 't' dim is 0, temporal wave-front rank tiling is NOT enabled.
+
+Blocks:
+ In 'x' dimension, region of size 256 contains 5 block(s) of size 48 plus 1 remainder block of size 16.
+ In 'y' dimension, region of size 256 contains 4 block(s) of size 64.
+ In 'z' dimension, region of size 256 contains 2 block(s) of size 112 plus 1 remainder block of size 32.
+ num-blocks-per-region-per-step: 72
+ num-blocks-per-local-domain-per-step: 72
+ Since the block size in the 't' dim is 0, temporal blocking is NOT enabled.
+
+Mini-blocks:
+ In 'x' dimension, block of size 48 contains 1 mini-block(s) of size 48.
+ In 'y' dimension, block of size 64 contains 1 mini-block(s) of size 64.
+ In 'z' dimension, block of size 112 contains 1 mini-block(s) of size 112.
+ num-mini-blocks-per-block-per-step: 1
+ num-mini-blocks-per-region-per-step: 72
+ num-mini-blocks-per-local-domain-per-step: 72
+ Since the mini-block size in the 't' dim is 0, temporal wave-front block tiling is NOT enabled.
+
+Sub-blocks:
+ In 'x' dimension, mini-block of size 48 contains 48 sub-block(s) of size 1.
+ In 'y' dimension, mini-block of size 64 contains 1 sub-block(s) of size 64.
+ In 'z' dimension, mini-block of size 112 contains 1 sub-block(s) of size 112.
+ num-sub-blocks-per-mini-block-per-step: 48
+ num-sub-blocks-per-block-per-step: 48
+ num-sub-blocks-per-region-per-step: 3456
+ num-sub-blocks-per-rank-per-step: 3456
+Constructing bounding boxes for 1 stencil-bundles(s)...
+Bounding-box construction done in 6.796u secs.
+Allocating 223.282MiB for 2 var(s) preferring local NUMA node...
+'p' 4-D var (t=2 * x=274 * y=274 * z=275) with storage at 0x1525bbab0000 containing 157.516MiB (41.2918M SIMD FP element(s) of 4 byte(s) each) and meta-data at 0x1810e70
+'v' 3-D var (x=258 * y=258 * z=259) with storage at 0x1525c5834140 containing 65.7657MiB (17.2401M SIMD FP element(s) of 4 byte(s) each) and meta-data at 0x18115e0
+Allocating 25.5245MiB for 6 MPI buffer(s) preferring local NUMA node...
+Allocation done in 3.76916m secs.
+
+Domain size in this rank (points):          16.7772M
+Total allocation in this rank:              223.282MiB
+Overall problem size in 8 rank(s) (points): 134.218M
+Total overall allocation in 8 rank(s):      1.74439GiB
+
+Work-unit sizes in points (from smallest to largest):
+ vector-size:           x=1 * y=1 * z=1
+ cluster-size:          x=1 * y=1 * z=1
+ sub-block-size:        x=1 * y=64 * z=112
+ mini-block-size:       t=0 * x=48 * y=64 * z=112
+ block-size:            t=0 * x=48 * y=64 * z=112
+ region-size:           t=0 * x=256 * y=256 * z=256
+ local-domain-size:     x=256 * y=256 * z=256
+ global-domain-size:    x=512 * y=512 * z=512
+
+Other settings:
+ yask-version:          3.05.06
+ target:                intel64
+ stencil-name:          iso3dfd
+ stencil-description:   iso3dfd radius 8
+ element-size:          4B
+ local-domain:          x=0, y=0, z=0 ... x=255, y=255, z=255
+ num-ranks:             x=2 * y=2 * z=2
+ rank-indices:          x=0, y=0, z=0
+ local-domain-offsets:  x=0, y=0, z=0
+ mpi-interior:          x=0, y=0, z=0 ... x=247, y=247, z=247
+ vector-len:            1
+ extra-padding:         x=1, y=1, z=1
+ minimum-padding:       x=0, y=0, z=0
+ allow-addl-padding:    true
+ L1-prefetch-distance:  0
+ L2-prefetch-distance:  0
+ max-halos:             x=8, y=8, z=8
+ num-wave-front-steps:      0
+ num-temporal-block-steps:  0
+
+Num stages:             1
+Num stencil bundles:    1
+Num stencil equations:  1
+
+Breakdown of work stats in this rank:
+Stage 'stencil_stage_0':
+ num bundles:                 1
+ stage scope:                 x=0, y=0, z=0 ... x=255, y=255, z=255
+ Bundle 'stencil_bundle_0':
+  num reqd scratch bundles:   0
+  bundle size (points):       16.7772M
+  valid points in bundle:     16.7772M
+  bundle scope:               x=0, y=0, z=0 ... x=255, y=255, z=255
+  bundle bounding-box size:   x=256 * y=256 * z=256
+  num full rectangles in box: 1
+  var-reads per point:        51
+  var-reads in rank:          855.638M
+  var-writes per point:       1
+  var-writes in rank:         16.7772M
+  est FP-ops per point:       61
+  est FP-ops in rank:         1.02341G
+  num input-only domain vars:    1
+  input-only domain vars:        v
+  num output-only domain vars:   0
+  num input-output domain vars:  1
+  input-output domain vars:      p
+  num input-only other vars:     0
+  num output-only other vars:    0
+  num input-output other vars:   0
+Initializing vars...
+Var initialization done in 286.861m secs.
+Auto-tuning...
+auto-tuner: finished warmup for 2 steps(s) in 643.372m secs
+auto-tuner: tuning block sizes...
+auto-tuner: search-dist=8: 3.10686 steps/sec (1 steps(s) in 321.868m secs) with size x=48 * y=64 * z=112 -- best so far
+auto-tuner: search-dist=8: 2.68144 steps/sec (1 steps(s) in 372.934m secs) with size x=48 * y=32 * z=80
+auto-tuner: search-dist=8: 2.68512 steps/sec (1 steps(s) in 372.423m secs) with size x=16 * y=64 * z=80
+auto-tuner: search-dist=8: 2.63095 steps/sec (1 steps(s) in 380.091m secs) with size x=48 * y=64 * z=80
+auto-tuner: search-dist=8: 2.53654 steps/sec (1 steps(s) in 394.238m secs) with size x=80 * y=64 * z=80
+auto-tuner: search-dist=8: 2.57292 steps/sec (1 steps(s) in 388.663m secs) with size x=48 * y=96 * z=80
+auto-tuner: search-dist=8: 3.17744 steps/sec (1 steps(s) in 314.718m secs) with size x=16 * y=32 * z=112 -- best so far
+auto-tuner: search-dist=8: 3.19573 steps/sec (1 steps(s) in 312.918m secs) with size x=48 * y=32 * z=112 -- best so far
+auto-tuner: search-dist=8: 3.12693 steps/sec (1 steps(s) in 319.802m secs) with size x=80 * y=32 * z=112
+auto-tuner: search-dist=8: 3.18574 steps/sec (1 steps(s) in 313.899m secs) with size x=16 * y=64 * z=112
+auto-tuner: search-dist=8: 3.03021 steps/sec (1 steps(s) in 330.01m secs) with size x=80 * y=64 * z=112
+auto-tuner: search-dist=8: 3.16033 steps/sec (1 steps(s) in 316.423m secs) with size x=16 * y=96 * z=112
+auto-tuner: search-dist=8: 3.05721 steps/sec (1 steps(s) in 327.095m secs) with size x=48 * y=96 * z=112
+auto-tuner: search-dist=8: 2.97543 steps/sec (1 steps(s) in 336.086m secs) with size x=80 * y=96 * z=112
+auto-tuner: search-dist=8: 3.77566 steps/sec (1 steps(s) in 264.855m secs) with size x=48 * y=32 * z=144 -- best so far
+auto-tuner: search-dist=8: 3.82426 steps/sec (1 steps(s) in 261.489m secs) with size x=16 * y=64 * z=144 -- best so far
+auto-tuner: search-dist=8: 3.74657 steps/sec (1 steps(s) in 266.911m secs) with size x=48 * y=64 * z=144
+auto-tuner: search-dist=8: 3.6739 steps/sec (1 steps(s) in 272.19m secs) with size x=80 * y=64 * z=144
+auto-tuner: search-dist=8: 3.70604 steps/sec (1 steps(s) in 269.83m secs) with size x=48 * y=96 * z=144
+auto-tuner: search-dist=8: 3.79224 steps/sec (1 steps(s) in 263.697m secs) with size x=16 * y=32 * z=144
+auto-tuner: search-dist=8: 3.79737 steps/sec (1 steps(s) in 263.34m secs) with size x=16 * y=96 * z=144
+auto-tuner: search-dist=8: 3.87792 steps/sec (1 steps(s) in 257.87m secs) with size x=16 * y=32 * z=176 -- best so far
+auto-tuner: search-dist=8: 3.7812 steps/sec (1 steps(s) in 264.467m secs) with size x=16 * y=64 * z=176
+auto-tuner: search-dist=8: 3.74834 steps/sec (1 steps(s) in 266.784m secs) with size x=48 * y=64 * z=176
+auto-tuner: search-dist=8: 3.75592 steps/sec (1 steps(s) in 266.246m secs) with size x=16 * y=96 * z=176
+auto-tuner: search-dist=8: 3.8566 steps/sec (1 steps(s) in 259.296m secs) with size x=48 * y=32 * z=176
+auto-tuner: search-dist=8: 3.89782 steps/sec (1 steps(s) in 256.554m secs) with size x=16 * y=32 * z=208 -- best so far
+auto-tuner: search-dist=8: 3.97475 steps/sec (1 steps(s) in 251.588m secs) with size x=48 * y=32 * z=208 -- best so far
+auto-tuner: search-dist=8: 3.87058 steps/sec (1 steps(s) in 258.36m secs) with size x=16 * y=64 * z=208
+auto-tuner: search-dist=8: 3.73252 steps/sec (1 steps(s) in 267.915m secs) with size x=80 * y=32 * z=176
+auto-tuner: search-dist=8: 3.81674 steps/sec (1 steps(s) in 262.004m secs) with size x=80 * y=32 * z=208
+auto-tuner: search-dist=8: 3.89652 steps/sec (1 steps(s) in 256.639m secs) with size x=48 * y=64 * z=208
+auto-tuner: search-dist=8: 3.73441 steps/sec (1 steps(s) in 267.78m secs) with size x=80 * y=64 * z=208
+auto-tuner: search-dist=8: 3.99736 steps/sec (2 steps(s) in 500.33m secs) with size x=16 * y=32 * z=240 -- best so far
+auto-tuner: search-dist=8: 4.01382 steps/sec (2 steps(s) in 498.278m secs) with size x=48 * y=32 * z=240 -- best so far
+auto-tuner: search-dist=8: 3.97005 steps/sec (2 steps(s) in 503.772m secs) with size x=80 * y=32 * z=240
+auto-tuner: search-dist=8: 4.00049 steps/sec (2 steps(s) in 499.939m secs) with size x=48 * y=64 * z=240
+auto-tuner: search-dist=8: 4.04101 steps/sec (2 steps(s) in 494.926m secs) with size x=16 * y=64 * z=240 -- best so far
+auto-tuner: search-dist=8: 3.95496 steps/sec (2 steps(s) in 505.694m secs) with size x=80 * y=64 * z=240
+auto-tuner: search-dist=8: 4.76471 steps/sec (2 steps(s) in 419.753m secs) with size x=16 * y=32 * z=256 -- best so far
+auto-tuner: search-dist=8: 4.81742 steps/sec (2 steps(s) in 415.16m secs) with size x=48 * y=32 * z=256 -- best so far
+auto-tuner: search-dist=8: 4.8111 steps/sec (2 steps(s) in 415.705m secs) with size x=80 * y=32 * z=256
+auto-tuner: search-dist=8: 4.85643 steps/sec (2 steps(s) in 411.826m secs) with size x=48 * y=64 * z=256 -- best so far
+auto-tuner: search-dist=8: 3.97106 steps/sec (2 steps(s) in 503.643m secs) with size x=48 * y=32 * z=224
+auto-tuner: search-dist=8: 3.98603 steps/sec (2 steps(s) in 501.752m secs) with size x=16 * y=64 * z=224
+auto-tuner: search-dist=8: 3.96509 steps/sec (1 steps(s) in 252.201m secs) with size x=48 * y=64 * z=224
+auto-tuner: search-dist=8: 3.81125 steps/sec (1 steps(s) in 262.381m secs) with size x=80 * y=64 * z=224
+auto-tuner: search-dist=8: 3.92866 steps/sec (1 steps(s) in 254.54m secs) with size x=48 * y=96 * z=224
+auto-tuner: search-dist=8: 4.83181 steps/sec (2 steps(s) in 413.924m secs) with size x=16 * y=64 * z=256
+auto-tuner: search-dist=8: 4.85543 steps/sec (2 steps(s) in 411.91m secs) with size x=80 * y=64 * z=256
+auto-tuner: search-dist=8: 4.85358 steps/sec (2 steps(s) in 412.067m secs) with size x=16 * y=96 * z=256
+auto-tuner: search-dist=8: 4.86989 steps/sec (2 steps(s) in 410.687m secs) with size x=48 * y=96 * z=256 -- best so far
+auto-tuner: search-dist=8: 4.87601 steps/sec (2 steps(s) in 410.171m secs) with size x=80 * y=96 * z=256 -- best so far
+auto-tuner: search-dist=8: 3.78762 steps/sec (1 steps(s) in 264.018m secs) with size x=80 * y=96 * z=224
+auto-tuner: search-dist=8: 3.87283 steps/sec (1 steps(s) in 258.209m secs) with size x=112 * y=96 * z=224
+auto-tuner: search-dist=8: 3.77109 steps/sec (1 steps(s) in 265.176m secs) with size x=80 * y=128 * z=224
+auto-tuner: search-dist=8: 4.84501 steps/sec (2 steps(s) in 412.796m secs) with size x=112 * y=64 * z=256
+auto-tuner: search-dist=8: 4.87485 steps/sec (2 steps(s) in 410.269m secs) with size x=112 * y=96 * z=256
+auto-tuner: search-dist=8: 4.87594 steps/sec (2 steps(s) in 410.178m secs) with size x=48 * y=128 * z=256
+auto-tuner: search-dist=8: 4.89859 steps/sec (2 steps(s) in 408.281m secs) with size x=80 * y=128 * z=256 -- best so far
+auto-tuner: search-dist=8: 4.90697 steps/sec (2 steps(s) in 407.584m secs) with size x=112 * y=128 * z=256 -- best so far
+auto-tuner: search-dist=8: 3.86429 steps/sec (1 steps(s) in 258.78m secs) with size x=112 * y=128 * z=224
+auto-tuner: search-dist=8: 3.76864 steps/sec (1 steps(s) in 265.348m secs) with size x=144 * y=128 * z=224
+auto-tuner: search-dist=8: 3.8647 steps/sec (1 steps(s) in 258.752m secs) with size x=112 * y=160 * z=224
+auto-tuner: search-dist=8: 4.88462 steps/sec (2 steps(s) in 409.448m secs) with size x=144 * y=96 * z=256
+auto-tuner: search-dist=8: 4.90572 steps/sec (2 steps(s) in 407.687m secs) with size x=144 * y=128 * z=256
+auto-tuner: search-dist=8: 4.89043 steps/sec (2 steps(s) in 408.962m secs) with size x=80 * y=160 * z=256
+auto-tuner: search-dist=8: 4.89962 steps/sec (2 steps(s) in 408.195m secs) with size x=112 * y=160 * z=256
+auto-tuner: search-dist=8: 4.90913 steps/sec (2 steps(s) in 407.404m secs) with size x=144 * y=160 * z=256 -- best so far
+auto-tuner: search-dist=8: 3.7648 steps/sec (1 steps(s) in 265.618m secs) with size x=144 * y=160 * z=224
+auto-tuner: search-dist=8: 3.85363 steps/sec (1 steps(s) in 259.495m secs) with size x=176 * y=160 * z=224
+auto-tuner: search-dist=8: 3.77258 steps/sec (1 steps(s) in 265.071m secs) with size x=144 * y=192 * z=224
+auto-tuner: search-dist=8: 4.90692 steps/sec (2 steps(s) in 407.588m secs) with size x=176 * y=128 * z=256
+auto-tuner: search-dist=8: 4.89208 steps/sec (2 steps(s) in 408.824m secs) with size x=176 * y=160 * z=256
+auto-tuner: search-dist=8: 4.90493 steps/sec (2 steps(s) in 407.753m secs) with size x=112 * y=192 * z=256
+auto-tuner: search-dist=8: 4.90846 steps/sec (2 steps(s) in 407.46m secs) with size x=144 * y=192 * z=256
+auto-tuner: search-dist=8: 4.90418 steps/sec (2 steps(s) in 407.815m secs) with size x=176 * y=192 * z=256
+auto-tuner: search-dist=4: 3.96317 steps/sec (1 steps(s) in 252.323m secs) with size x=144 * y=144 * z=240
+auto-tuner: search-dist=4: 3.87803 steps/sec (1 steps(s) in 257.863m secs) with size x=128 * y=160 * z=240
+auto-tuner: search-dist=4: 3.95594 steps/sec (1 steps(s) in 252.784m secs) with size x=144 * y=160 * z=240
+auto-tuner: search-dist=4: 3.87354 steps/sec (1 steps(s) in 258.162m secs) with size x=160 * y=160 * z=240
+auto-tuner: search-dist=4: 3.95516 steps/sec (1 steps(s) in 252.834m secs) with size x=144 * y=176 * z=240
+auto-tuner: search-dist=4: 4.89951 steps/sec (2 steps(s) in 408.204m secs) with size x=128 * y=144 * z=256
+auto-tuner: search-dist=4: 4.90183 steps/sec (2 steps(s) in 408.011m secs) with size x=144 * y=144 * z=256
+auto-tuner: search-dist=4: 4.90409 steps/sec (2 steps(s) in 407.823m secs) with size x=160 * y=144 * z=256
+auto-tuner: search-dist=4: 4.90496 steps/sec (2 steps(s) in 407.75m secs) with size x=128 * y=160 * z=256
+auto-tuner: search-dist=4: 4.90313 steps/sec (2 steps(s) in 407.903m secs) with size x=160 * y=160 * z=256
+auto-tuner: search-dist=4: 4.90144 steps/sec (2 steps(s) in 408.043m secs) with size x=128 * y=176 * z=256
+auto-tuner: search-dist=4: 4.89862 steps/sec (2 steps(s) in 408.278m secs) with size x=144 * y=176 * z=256
+auto-tuner: search-dist=4: 4.90102 steps/sec (2 steps(s) in 408.079m secs) with size x=160 * y=176 * z=256
+auto-tuner: search-dist=2: 4.8386 steps/sec (2 steps(s) in 413.343m secs) with size x=144 * y=152 * z=248
+auto-tuner: search-dist=2: 4.83828 steps/sec (2 steps(s) in 413.37m secs) with size x=136 * y=160 * z=248
+auto-tuner: search-dist=2: 4.83603 steps/sec (2 steps(s) in 413.563m secs) with size x=144 * y=160 * z=248
+auto-tuner: search-dist=2: 4.83789 steps/sec (2 steps(s) in 413.403m secs) with size x=152 * y=160 * z=248
+auto-tuner: search-dist=2: 4.82307 steps/sec (2 steps(s) in 414.674m secs) with size x=144 * y=168 * z=248
+auto-tuner: search-dist=2: 4.90307 steps/sec (2 steps(s) in 407.908m secs) with size x=136 * y=152 * z=256
+auto-tuner: search-dist=2: 4.90229 steps/sec (2 steps(s) in 407.973m secs) with size x=144 * y=152 * z=256
+auto-tuner: search-dist=2: 4.8993 steps/sec (2 steps(s) in 408.221m secs) with size x=152 * y=152 * z=256
+auto-tuner: search-dist=2: 4.9003 steps/sec (2 steps(s) in 408.139m secs) with size x=136 * y=160 * z=256
+auto-tuner: search-dist=2: 4.89976 steps/sec (2 steps(s) in 408.183m secs) with size x=152 * y=160 * z=256
+auto-tuner: search-dist=2: 4.90162 steps/sec (2 steps(s) in 408.029m secs) with size x=136 * y=168 * z=256
+auto-tuner: search-dist=2: 4.90123 steps/sec (2 steps(s) in 408.061m secs) with size x=144 * y=168 * z=256
+auto-tuner: search-dist=2: 4.89998 steps/sec (2 steps(s) in 408.165m secs) with size x=152 * y=168 * z=256
+auto-tuner: search-dist=1: 4.83071 steps/sec (2 steps(s) in 414.018m secs) with size x=144 * y=156 * z=252
+auto-tuner: search-dist=1: 4.83013 steps/sec (2 steps(s) in 414.068m secs) with size x=140 * y=160 * z=252
+auto-tuner: search-dist=1: 4.82926 steps/sec (2 steps(s) in 414.142m secs) with size x=144 * y=160 * z=252
+auto-tuner: search-dist=1: 4.82904 steps/sec (2 steps(s) in 414.161m secs) with size x=148 * y=160 * z=252
+auto-tuner: search-dist=1: 4.82874 steps/sec (2 steps(s) in 414.187m secs) with size x=144 * y=164 * z=252
+auto-tuner: search-dist=1: 4.90323 steps/sec (2 steps(s) in 407.895m secs) with size x=140 * y=156 * z=256
+auto-tuner: search-dist=1: 4.90418 steps/sec (2 steps(s) in 407.816m secs) with size x=144 * y=156 * z=256
+auto-tuner: search-dist=1: 4.90328 steps/sec (2 steps(s) in 407.89m secs) with size x=148 * y=156 * z=256
+auto-tuner: search-dist=1: 4.90294 steps/sec (2 steps(s) in 407.918m secs) with size x=140 * y=160 * z=256
+auto-tuner: search-dist=1: 4.90446 steps/sec (2 steps(s) in 407.792m secs) with size x=148 * y=160 * z=256
+auto-tuner: search-dist=1: 4.93735 steps/sec (2 steps(s) in 405.076m secs) with size x=140 * y=164 * z=256 -- best so far
+auto-tuner: search-dist=1: 4.94336 steps/sec (2 steps(s) in 404.583m secs) with size x=144 * y=164 * z=256 -- best so far
+auto-tuner: search-dist=1: 4.94349 steps/sec (2 steps(s) in 404.572m secs) with size x=148 * y=164 * z=256 -- best so far
+auto-tuner: search-dist=1: 4.87293 steps/sec (2 steps(s) in 410.431m secs) with size x=148 * y=164 * z=252
+auto-tuner: search-dist=1: 4.87159 steps/sec (2 steps(s) in 410.544m secs) with size x=152 * y=164 * z=252
+auto-tuner: search-dist=1: 4.87253 steps/sec (2 steps(s) in 410.464m secs) with size x=148 * y=168 * z=252
+auto-tuner: search-dist=1: 4.93161 steps/sec (2 steps(s) in 405.547m secs) with size x=152 * y=164 * z=256
+auto-tuner: search-dist=1: 4.94471 steps/sec (2 steps(s) in 404.473m secs) with size x=148 * y=168 * z=256 -- best so far
+auto-tuner: search-dist=1: 4.87405 steps/sec (2 steps(s) in 410.337m secs) with size x=144 * y=168 * z=252
+auto-tuner: search-dist=1: 4.87535 steps/sec (2 steps(s) in 410.227m secs) with size x=152 * y=168 * z=252
+auto-tuner: search-dist=1: 4.87826 steps/sec (2 steps(s) in 409.982m secs) with size x=148 * y=172 * z=252
+auto-tuner: search-dist=1: 4.9426 steps/sec (2 steps(s) in 404.645m secs) with size x=144 * y=172 * z=256
+auto-tuner: search-dist=1: 4.94686 steps/sec (2 steps(s) in 404.297m secs) with size x=148 * y=172 * z=256 -- best so far
+auto-tuner: search-dist=1: 4.94616 steps/sec (2 steps(s) in 404.354m secs) with size x=152 * y=172 * z=256
+auto-tuner: search-dist=1: 4.87347 steps/sec (2 steps(s) in 410.385m secs) with size x=144 * y=172 * z=252
+auto-tuner: search-dist=1: 4.8766 steps/sec (2 steps(s) in 410.122m secs) with size x=152 * y=172 * z=252
+auto-tuner: search-dist=1: 4.87439 steps/sec (2 steps(s) in 410.307m secs) with size x=148 * y=176 * z=252
+auto-tuner: search-dist=1: 4.94482 steps/sec (2 steps(s) in 404.464m secs) with size x=148 * y=176 * z=256
+auto-tuner: search-dist=1: 4.9447 steps/sec (2 steps(s) in 404.474m secs) with size x=152 * y=176 * z=256
+auto-tuner: applying size t=0 * x=148 * y=172 * z=256
+auto-tuner: done
+Waiting for auto-tuner to converge on all ranks...
+Auto-tuner done after 216 step(s) in 59.1014 secs.
+auto-tuner: best-block-size: x=148 * y=172 * z=256
+auto-tuner: mini-block-size: x=148 * y=172 * z=256
+auto-tuner: sub-block-size: x=1 * y=172 * z=256
+ num-wave-front-steps:      0
+ num-temporal-block-steps:  0
+
+──────────────────────────────────────────────────────────────────────
+Running 1 step(s) for warm-up...
+  Done in 497.649m secs.
+Running 2 step(s) for calibration...
+  Done in 598.958m secs.
+Running 4 step(s) for calibration...
+  Done in 1.20011 secs.
+
+──────────────────────────────────────────────────────────────────────
+Running 3 performance trial(s) of 34 step(s) each...
+──────────────────────────────────────────────────────────────────────
+Trial number:                      1
+
+Work stats:
+ num-steps-done:                   34
+ num-reads-per-step:               6.8451G
+ num-writes-per-step:              134.218M
+ num-est-FP-ops-per-step:          8.18728G
+ num-points-per-step:              134.218M
+
+Time stats:
+ elapsed-time (sec):               10.3234
+ Time breakdown by activity type:
+  compute time (sec):                6.94054 (67.231056%)
+  halo exchange time (sec):          3.38259 (32.766212%)
+  other time (sec):                  282.199u (0.002734%)
+ Compute-time breakdown by halo area:
+  rank-exterior compute (sec):       2.08062 (29.977816%)
+  rank-interior compute (sec):       4.85991 (70.022186%)
+ Halo-time breakdown:
+  MPI waits (sec):                   192.111m (5.679400%)
+  MPI tests (sec):                   36.1865m (1.069787%)
+  packing, unpacking, etc. (sec):    3.15429 (93.250816%)
+
+Rate stats:
+ throughput (num-reads/sec):       22.5443G
+ throughput (num-writes/sec):      442.044M
+ throughput (est-FLOPS):           26.9647G
+ throughput (num-points/sec):      442.044M
+──────────────────────────────────────────────────────────────────────
+Trial number:                      2
+
+Work stats:
+ num-steps-done:                   34
+ num-reads-per-step:               6.8451G
+ num-writes-per-step:              134.218M
+ num-est-FP-ops-per-step:          8.18728G
+ num-points-per-step:              134.218M
+
+Time stats:
+ elapsed-time (sec):               10.3283
+ Time breakdown by activity type:
+  compute time (sec):                6.94296 (67.222740%)
+  halo exchange time (sec):          3.38505 (32.774559%)
+  other time (sec):                  278.946u (0.002701%)
+ Compute-time breakdown by halo area:
+  rank-exterior compute (sec):       2.08162 (29.981749%)
+  rank-interior compute (sec):       4.86134 (70.018250%)
+ Halo-time breakdown:
+  MPI waits (sec):                   190.168m (5.617877%)
+  MPI tests (sec):                   36.2506m (1.070902%)
+  packing, unpacking, etc. (sec):    3.15863 (93.311218%)
+
+Rate stats:
+ throughput (num-reads/sec):       22.5336G
+ throughput (num-writes/sec):      441.835M
+ throughput (est-FLOPS):           26.952G
+ throughput (num-points/sec):      441.835M
+──────────────────────────────────────────────────────────────────────
+Trial number:                      3
+
+Work stats:
+ num-steps-done:                   34
+ num-reads-per-step:               6.8451G
+ num-writes-per-step:              134.218M
+ num-est-FP-ops-per-step:          8.18728G
+ num-points-per-step:              134.218M
+
+Time stats:
+ elapsed-time (sec):               10.3306
+ Time breakdown by activity type:
+  compute time (sec):                6.94077 (67.186340%)
+  halo exchange time (sec):          3.38957 (32.810913%)
+  other time (sec):                  283.897u (0.002748%)
+ Compute-time breakdown by halo area:
+  rank-exterior compute (sec):       2.08261 (30.005495%)
+  rank-interior compute (sec):       4.85816 (69.994507%)
+ Halo-time breakdown:
+  MPI waits (sec):                   197.085m (5.814456%)
+  MPI tests (sec):                   36.1071m (1.065241%)
+  packing, unpacking, etc. (sec):    3.15638 (93.120300%)
+
+Rate stats:
+ throughput (num-reads/sec):       22.5285G
+ throughput (num-writes/sec):      441.735M
+ throughput (est-FLOPS):           26.9459G
+ throughput (num-points/sec):      441.735M
+──────────────────────────────────────────────────────────────────────
+Performance stats of best trial:
+ best-num-steps-done:              34
+ best-elapsed-time (sec):          10.3234
+ best-throughput (num-reads/sec):  22.5443G
+ best-throughput (num-writes/sec): 442.044M
+ best-throughput (est-FLOPS):      26.9647G
+ best-throughput (num-points/sec): 442.044M
+──────────────────────────────────────────────────────────────────────
+Performance stats of 50th-percentile trial:
+ mid-num-steps-done:               34
+ mid-elapsed-time (sec):           10.3283
+ mid-throughput (num-reads/sec):   22.5336G
+ mid-throughput (num-writes/sec):  441.835M
+ mid-throughput (est-FLOPS):       26.952G
+ mid-throughput (num-points/sec):  441.835M
+──────────────────────────────────────────────────────────────────────
+Notes:
+ The 50th-percentile trial is the same as the median trial
+  when there is an odd number of trials. When there is an even
+  number of trials, the nearest-rank method is used. An odd
+  number of trials is recommended.
+ Num-reads/sec, num-writes/sec, and FLOPS are metrics based on
+  stencil specifications and can vary due to differences in
+  implementations and optimizations.
+ Num-points/sec is based on overall problem size and is
+  a more reliable performance metric, esp. when comparing
+  across implementations.
+
+Results NOT VERIFIED.
+Stencil 'iso3dfd'.
+YASK DONE.
+──────────────────────────────────────────────────────────────────────
+===================
+'mpirun -np 8 --hostfile thorhosts -mca btl self,tcp ./bin/yask_kernel.iso3dfd.intel64.exe -l 256 -no-use_shm' ran successfully.
