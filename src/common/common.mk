@@ -50,7 +50,7 @@ ifeq ($(shell uname -o),Cygwin)
 else
   SO_SUFFIX	:=	.so
   RUN_PREFIX	:=	env I_MPI_DEBUG=+5 I_MPI_PRINT_VERSION=1 OMP_DISPLAY_ENV=VERBOSE KMP_VERSION=1
-  PYTHON	:=	python
+  PYTHON	:=	python3
 endif
 
 # Common source.

@@ -121,13 +121,14 @@ namespace yask {
 #endif
 
         // Turn off denormals unless the USE_DENORMALS macro is set.
-#ifndef USE_DENORMALS
+//Commented out for aarch64 port
+/*#ifndef USE_DENORMALS
         // Enable FTZ
         _MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
 
         //Enable DAZ
         _MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
-#endif
+#endif*/
 
         // Set env vars needed by OMP.
         // TODO: make this visible to the user.

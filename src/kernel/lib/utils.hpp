@@ -235,7 +235,11 @@ namespace yask {
         // Wait until ok to read.
         void wait_for_ok_to_read() const {
             while (!is_ok_to_read())
-                _mm_pause();
+	    {
+		//Changed for aarch64 which doesn't have these x86 intrinsics
+                //_mm_pause();
+		pause();
+	    }
         }
 
         // Mark that read is done.
@@ -255,7 +259,11 @@ namespace yask {
         // Wait until ok to write.
         void wait_for_ok_to_write() const {
             while (!is_ok_to_write())
-                _mm_pause();
+	    {
+		//Changed for aarch64 which doesn't have these x86 intrinsics
+                //_mm_pause();
+		pause();
+	    }
         }
 
         // Mark that write is done.

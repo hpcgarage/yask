@@ -781,8 +781,11 @@ namespace yask {
                         "#pragma omp simd\n";
                 os << " for (idx_t " << idim << " = " << istart << "; " <<
                     idim << " < " << istop << "; " <<
-                    idim << " += " << istep << ", " <<
-                    vp->get_elem_index(idim) << " += " << iestep << ") {\n";
+                    idim << " += " << istep << ") {\n";
+		os << vp->get_elem_index(idim) << " += " << iestep << ";\n";
+
+                    //idim << " += " << istep << ", " <<
+                    //vp->get_elem_index(idim) << " += " << iestep << ") {\n";
 
                 // Generate loop body using vars stored in print helper.
                 // Visit all expressions to cover the whole vector/cluster.

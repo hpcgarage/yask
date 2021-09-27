@@ -916,8 +916,9 @@ namespace yask {
     inline void prefetch(const void* p) {
         #if defined(__INTEL_COMPILER) || defined(__clang__)
         _mm_prefetch((const char*)p, level);
-        #else
-        _mm_prefetch(p, (enum _mm_hint)level);
+        //#else
+        //_mm_prefetch(p, (enum _mm_hint)level);
+        prefetch(p, level);
         #endif
     }
 

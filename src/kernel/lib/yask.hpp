@@ -82,7 +82,7 @@ typedef int MPI_Request;
 #include <vector>
 #include <unistd.h>
 #include <stdint.h>
-#include <immintrin.h>
+//#include <immintrin.h>
 #include <sys/mman.h>
 #ifdef USE_PMEM
 #include <memkind.h>
