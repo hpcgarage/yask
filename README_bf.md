@@ -6,6 +6,8 @@ Compilers used: HPC-X 2.9.0 - supports gcc 8.4.1 and OpenMPI 4.1
 
 ## Compilation Instructions (tested on HPC Advisory Council Thor cluster)
 
+Note that you cannot easily mix installations that have intel64 and aarch64 executables since the yask_compiler is built for each architecture. We usually test using two separate repos with the same git commit.
+
 ### For Bluefield2
 
 ```
