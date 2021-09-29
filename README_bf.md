@@ -20,10 +20,10 @@ make arch=aarch64 stencil=iso3dfd -j
 
 MPI compilation and execution
 ```
-# Specify MPI compilation with 8 ranks for the 8 cores on the BF2
-make arch=aarch64 ranks=8 stencil=iso3dfd -j
+# Specify MPI compilation for the 8 cores on the BF2
+make mpi=1 arch=aarch64 stencil=iso3dfd -j
 #Run using a hostfile with the local BF2 card (or other hosts) and 8 ranks
-./bin/yask.sh -mpi_cmd 'mpirun -np 8 --hostfile bf2hosts -mca btl self,tcp' -l 8 -no-use_shm -stencil iso3dfd -arch aarch64
+./bin/yask.sh -mpi_cmd 'mpirun -np 8 --hostfile bf2hosts -mca btl vader,self' -l 8 -no-use_shm -stencil iso3dfd -arch aarch64
 ```
 ### For Intel Host
 
