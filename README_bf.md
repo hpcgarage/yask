@@ -37,6 +37,12 @@ $ make arch=intel64 stencil=iso3dfd -j
 $ bin/yask.sh -arch intel64 -stencil iso3dfd -g 64
 ```
 
+### Running in a heterogeneous fashion across two architectures
+
+```
+mpirun -np 2 --hostfile thorhosts -mca btl vader,self ./bin/yask_kernel.iso3dfd.intel64.exe -g 16 -no-use_shm : -np 2 --hostfile bf2hosts_thor18 -mca btl vader,self ./bin/yask_kernel.iso3dfd.aarch64.exe -g 16 -no-use_shm
+```
+
 ## Changes to source code to support aarch64
 * Updated Makefile to swap flags (-qopenmp for -fopenmp), compilers (mpicc for mpiicc, gcc for icc)
 * Removed #include<immintrin.h> from the yask kernel header
